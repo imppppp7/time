@@ -47,11 +47,13 @@ class Window:
 		cv2.namedWindow(self.windowname2, cv2.WINDOW_NORMAL)
 		cv2.resizeWindow(self.windowname2, width2, height2)
 
-	def showimage(self, width, height, x1, y1):
-
+	def changeimage(self, width, height, x1, y1, z):
 		self.image4 = cv2.resize(self.image2, (width, height))
 		self.image5[x1:x1+height, y1:y1+width] = self.image4
-		# cv2.imshow(self.windowname2, self.image2)
+		# 加框
+		self.image5[x1-z:x1-1, y1-z:x1-1] = (0, 255, 0)
+
+	def showimage(self):
 		cv2.imshow(self.windowname1, self.image3)
 		cv2.imshow(self.windowname1, self.image1)
 		cv2.imshow(self.windowname2, self.image5)
@@ -70,7 +72,7 @@ class Window:
 	def nobiaotilan(self):
 		cv2.setWindowProperty(self.windowname2, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
-	def bindingwi(self, color1, color2):
+	def bindingwi(self, color1, color2, thickness):
 		def drawline(event, x, y,flags,param):
 			if event == cv2.EVENT_LBUTTONDOWN:
 				self.drawing = True
@@ -79,8 +81,8 @@ class Window:
 				if self.drawing:
 					if self.mode:
 						self.list1.append((x, y))
-						cv2.line(self.image3, self.list1[self.number], self.list1[self.number+1], color1, thickness=2)
-						cv2.line(self.image2, self.list1[self.number], self.list1[self.number + 1], color2, thickness=2)
+						cv2.line(self.image3, self.list1[self.number], self.list1[self.number+1], color1, thickness=thickness)
+						cv2.line(self.image2, self.list1[self.number], self.list1[self.number + 1], color2, thickness=thickness)
 						# cv2.circle(self.image3, (x, y), 4,color1, -1)
 						# cv2.circle(self.image2, (x, y), 4, color2, -1)
 						self.number = self.number+1
