@@ -11,10 +11,10 @@ from camera1 import Camera
 # 生成窗体对象
 pro = Window('projector_1','projector_2')
 # 前两个参数是第一个窗体，后两个是第二个窗体
-pro.createwindow(1280, 800, 1280, 800)
+pro.createwindow(1280, 800)
 # 连投影仪运行这句话，不连就把1改成0，否则会报错 out of range
 pro.movewindow(1)
-# 前两个参数是一屏二屏标记的颜色，第三个参数是标记的宽度
+# 前两个参数是一屏二屏标记的颜色，第三个参数是标记的宽度，如果想要二屏标记也是绿色就把（255,255,255）改成（0,255,0）
 pro.bindingwi((0, 255, 0), (255, 255, 255), 3)
 pro.nobiaotilan()
 

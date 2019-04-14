@@ -41,11 +41,11 @@ class Window:
 		self.number = 0
 		self.list1 = []
 
-	def createwindow(self, width, height,width2,height2):
+	def createwindow(self, width, height):
 		cv2.namedWindow(self.windowname1, cv2.WINDOW_NORMAL)
 		cv2.resizeWindow(self.windowname1, width, height)
 		cv2.namedWindow(self.windowname2, cv2.WINDOW_NORMAL)
-		cv2.resizeWindow(self.windowname2, width2, height2)
+		cv2.resizeWindow(self.windowname2, width, height)
 
 	def changeimage(self, width, height, x1, y1, z):
 		self.image4 = cv2.resize(self.image2, (width, height))
