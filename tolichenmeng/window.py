@@ -51,7 +51,11 @@ class Window:
 		self.image4 = cv2.resize(self.image2, (width, height))
 		self.image5[x1:x1+height, y1:y1+width] = self.image4
 		# 加框
-		self.image5[x1-z:x1-1, y1-z:x1-1] = (0, 255, 0)
+		self.image5[x1-1-z:x1-1, y1-1:y1+1+width] = [0, 255, 0]
+		self.image5[x1+height+1:x1+height+1+z, y1-1:y1+1+width] = [0, 255, 0]
+		self.image5[x1-z-1:x1+height+z+1, y1-1-z:y1-1] = [0, 255, 0]
+		self.image5[x1-z-1:x1+height+z+1, y1+width+1:y1+width+1+z] = [0, 255, 0]
+		# self.image5[x1 - z:x1 - 1, y1:y1 + width] = [0, 255, 0]
 
 	def showimage(self):
 		cv2.imshow(self.windowname1, self.image3)

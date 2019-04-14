@@ -17,8 +17,6 @@ pro.movewindow(1)
 # 前两个参数是一屏二屏标记的颜色，第三个参数是标记的宽度
 pro.bindingwi((0, 255, 0), (255, 255, 255), 3)
 pro.nobiaotilan()
-# 前两个参数调大小，后两个参数调位置,第五个参数调框的宽度
-pro.changeimage(800, 600, 100, 10, 10)
 
 while 1:
     # frame = cam.run()
@@ -27,6 +25,8 @@ while 1:
     frame = cv2.flip(frame, 0)
     frame = cv2.resize(frame, (1280, 800))
     pro.addimage(frame)
+    # 前两个参数调大小，后两个参数调位置,第五个参数调框的宽度
+    pro.changeimage(400, 300, 150, 300, 5)
     pro.showimage()
     k = cv2.waitKey(1) & 0xFF
     if k == ord('m'):
