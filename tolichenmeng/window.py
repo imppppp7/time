@@ -76,7 +76,7 @@ class Window:
 		cv2.setWindowProperty(self.windowname2, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
 	def bindingwi(self, color1, color2, thickness):
-		def drawline(event, x, y,flags,param):
+		def drawline(event, x, y, flags, param):
 			if event == cv2.EVENT_LBUTTONDOWN:
 				self.drawing = True
 				self.list1.append((x, y))

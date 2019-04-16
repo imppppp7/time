@@ -9,7 +9,7 @@ list1 = []
 # mouse callback function
 
 
-def draw_circle(event,x,y,flags,param):
+def draw_circle(event, x, y, flags, param):
     global drawing, mode, n, list1
     if event == cv2.EVENT_LBUTTONDOWN:
         drawing = True
@@ -18,10 +18,10 @@ def draw_circle(event,x,y,flags,param):
         if drawing:
             if mode:
                 list1.append((x, y))
-                # cv2.circle(img, (x, y), 4, (0, 255, 0), -1)
-                # cv2.circle(img2, (x, y), 3, (255, 255, 255), -1)
-                cv2.line(img, list1[n], list1[n+1], (0, 255, 0), thickness=5)
-                cv2.line(img2, list1[n], list1[n + 1], (0, 255, 0), thickness=5)
+                cv2.circle(img, (x, y), 4, (0, 255, 0), -1)
+                cv2.circle(img2, (x, y), 3, (255, 255, 255), -1)
+                # cv2.line(img, list1[n], list1[n+1], (0, 255, 0), thickness=5)
+                # cv2.line(img2, list1[n], list1[n + 1], (0, 255, 0), thickness=5)
                 n = n + 1
             else:
                 img[y - 25:y + 25, x - 25:x + 25, :] = img_copy[y - 25:y + 25, x - 25:x + 25, :]
