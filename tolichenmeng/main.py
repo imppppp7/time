@@ -21,8 +21,9 @@ pro.nobiaotilan()
 while 1:
     # frame = cam.run()
     # 有相机的时候就把frame = np.zeros注释掉 打开cam = Camera()和frame = cam.run()
-    frame = np.zeros([800, 1280, 3], np.uint8)
-    frame = cv2.flip(frame, 0)
+    # frame = np.zeros([800, 1280, 3], np.uint8)
+    frame = cv2.imread(r'D:\navagation\time\piuture\IMG_3606.jpg')
+    # frame = cv2.flip(frame, 0)
     frame = cv2.resize(frame, (1280, 800))
     pro.addimage(frame)
     # 前两个参数调大小，后两个参数调位置,第五个参数调框的宽度

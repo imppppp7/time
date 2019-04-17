@@ -52,8 +52,18 @@
 # # img = cv2.imread(r'D:\teleguience\teleguidence\time\piuture\11111.png')
 # # cv2.imshow('1',img)
 # cv2.waitKey(100)
-list1 = []
-list1.append((1,2))
-list1.append((2,3))
-list1 = []
-print(list1)
+# list1 = []
+# list1.append((1,2))
+# list1.append((2,3))
+# list1 = []
+# print(list1)
+
+import datetime
+import cv2
+
+start = datetime.datetime.now()
+
+nowtime = datetime.datetime.now()
+
+end = datetime.datetime.now()
+print(end-start)

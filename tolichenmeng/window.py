@@ -2,7 +2,7 @@ import cv2
 import screeninfo
 import numpy as np
 import copy
-
+import datetime
 
 '''
 
@@ -80,6 +80,7 @@ class Window:
 			if event == cv2.EVENT_LBUTTONDOWN:
 				self.drawing = True
 				self.list1.append((x, y))
+				self.start = datetime.datetime.now()
 			elif event == cv2.EVENT_MOUSEMOVE:
 				if self.drawing:
 					if self.mode:
@@ -88,7 +89,11 @@ class Window:
 						cv2.line(self.image2, self.list1[self.number], self.list1[self.number + 1], color2, thickness=thickness)
 						# cv2.circle(self.image3, (x, y), 4,color1, -1)
 						# cv2.circle(self.image2, (x, y), 4, color2, -1)
+						self.end = datetime.datetime.now()
 						self.number = self.number+1
+						_time = str(self.end-self.start)
+						a, b, c = _time.split(':')
+						print(c)
 					else:
 						self.image3[y - 25:y + 25, x - 25:x + 25, :] = self.image3_copy[y - 25:y + 25, x - 25:x + 25, :]
 						self.image2[y - 25:y + 25, x - 25:x + 25, :] = self.image2_copy[y - 25:y + 25, x - 25:x + 25, :]
