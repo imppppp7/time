@@ -21,15 +21,15 @@ fig = plt.figure()
 # ax1 = plt.axes(projection='3d')
 ax2 = Axes3D(fig)
 
-image =  cv2.imread(r'D:\teleguience\teleguidence\time\my-main-code\picture\4.jpg')
-# image = np.zeros([600, 800, 3], np.uint8)
-# image[:][:] = 255
+# image = cv2.imread(r'D:\navagation\time\piuture\IMG_3661-2.jpg')
+image = np.zeros([600, 800, 3], np.uint8)
+image[:][:] = 255
 # print(image)
 b, g, r = cv2.split(image)
 xd = np.arange(0, image.shape[1])
 yd = np.arange(0, image.shape[0])
 xd, yd = np.meshgrid(xd, yd)
-zd = r
+zd = g
 # print(g)
 # print(g.shape)
 ax2.scatter3D(xd,yd,zd, cmap='green',marker='.', s=50, label='')
