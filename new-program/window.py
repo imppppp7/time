@@ -22,6 +22,9 @@ image1不断地在刷新，但是仍然看不到做的标记 所以每次show im
 
 3.image1 的作用只是显示相机的照片image4 画线 擦线绑定的都是image3 
 
+4.相机拍到的是Image4,和相机混合，在一屏储存标记的是image3,image2是在二屏最开始画线的图，image1是混合了image3和image4的图,
+image5是二屏全屏显示的那个黑色图，将想要的东西赋值给image5的一部分就可以了
+
 '''
 
 
@@ -47,7 +50,11 @@ class Window:
 		cv2.resizeWindow(self.windowname2, width, height)
 
 	def changeimage(self, width, height, x1, y1, z):
-		self.image4 = cv2.resize(self.image2, (width, height))
+		# self.image4 = cv2.resize(self.image2, (width, height))
+
+		# 调同轴，需要投影相机拍到的画面
+		self.image4 = cv2.resize(self.image1, (width, height))
+
 		self.image5[x1:x1+height, y1:y1+width] = self.image4
 		# 加框
 		self.image5[x1-1-z:x1-1, y1-1:y1+1+width] = [0, 255, 0]
@@ -55,6 +62,8 @@ class Window:
 		self.image5[x1-z-1:x1+height+z+1, y1-1-z:y1-1] = [0, 255, 0]
 		self.image5[x1-z-1:x1+height+z+1, y1+width+1:y1+width+1+z] = [0, 255, 0]
 		# self.image5[x1 - z:x1 - 1, y1:y1 + width] = [0, 255, 0]
+
+
 
 	def showimage(self):
 		cv2.imshow(self.windowname1, self.image3)

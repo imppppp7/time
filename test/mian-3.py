@@ -32,6 +32,7 @@ def draw_circle(event, x, y, flags, param):
         list1 = []
         n = 0
 
+
 img = cv2.imread(r'D:\teleguience\teleguidence\time\piuture\mode.png')
 print(img.shape)
 img_copy = deepcopy(img)
