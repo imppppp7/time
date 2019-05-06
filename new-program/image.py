@@ -20,7 +20,9 @@ class Image:
         frame1 = cv2.flip(frame, 0)
         # frame = cv2.resize(frame, (800, 600))
         self.image = cv2.add(frame1, self.image)
+        print('self.n', self.n)
         if self.n % m == 0:
+            self.n = 0
             self.image1 = self.image
             self.image = np.zeros([600, 800, 3], np.uint8)
             return self.image1
@@ -41,3 +43,4 @@ while 1:
         cv2.imshow('1', frame1)
         cv2.waitKey(1)
         n = 0
+    print('n', n)
