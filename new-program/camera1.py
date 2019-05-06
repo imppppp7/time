@@ -61,9 +61,13 @@ class Camera:
 
         # mvsdk.CameraGetTriggerCount(hCamera)
 
-        # 手动曝光，曝光时间30ms
-        # mvsdk.CameraSetAeState(self.hCamera, 0)
-        # mvsdk.CameraSetExposureTime(self.hCamera, 30 * 1000)
+        # 手动曝光，曝光时间4ms
+        mvsdk.CameraSetAeState(self.hCamera, 0)
+        mvsdk.CameraSetExposureTime(self.hCamera, 3 * 1000)
+
+        # 设置增益，获得增益
+        mvsdk.CameraSetAnalogGain(self.hCamera, 2)
+        mvsdk.CameraGetAnalogGain(self.hCamera)
 
         # 让SDK内部取图线程开始工作
         mvsdk.CameraPlay(self.hCamera)
@@ -71,6 +75,9 @@ class Camera:
         # 计算RGB buffer所需的大小，这里直接按照相机的最大分辨率来分配
         self.FrameBufferSize = self.cap.sResolutionRange.iWidthMax * self.cap.sResolutionRange.iHeightMax *\
                                (1 if self.monoCamera else 3)
+
+        # 设置相机的分辨率，外触发需要调至800*600居中裁剪
+        mvsdk.CameraSetImageResolution(self.hCamera, mvsdk.CameraCustomizeResolution(self.hCamera))
 
         # 分配RGB buffer，用来存放ISP输出的图像
         # 备注：从相机传输到PC端的是RAW数据，在PC端通过软件ISP转为RGB数据（如果是黑白相机就不需要转换格式，但是ISP还有其它处理，所以也需要分配这个buffer）

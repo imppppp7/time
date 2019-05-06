@@ -29,15 +29,15 @@ image5是二屏全屏显示的那个黑色图，将想要的东西赋值给image
 
 
 class Window:
-	def __init__(self, windowname1, windowname2):
+	def __init__(self, windowname1, windowname2, width, height):
 		self.windowname1, self.windowname2 = windowname1, windowname2
-		self.image1 = np.zeros([800, 1280, 3], np.uint8)
-		self.image2 = np.zeros([800, 1280, 3], np.uint8)
-		self.image3 = np.zeros([800, 1280, 3], np.uint8)
-		self.image4 = np.zeros([800, 1280, 3], np.uint8)
-		self.image5 = np.zeros([800, 1280, 3], np.uint8)
-		self.image2_copy = np.zeros([800, 1280, 3], np.uint8)
-		self.image3_copy = np.zeros([800, 1280, 3], np.uint8)
+		self.image1 = np.zeros([height, width, 3], np.uint8)
+		self.image2 = np.zeros([height, width, 3], np.uint8)
+		self.image3 = np.zeros([height, width, 3], np.uint8)
+		self.image4 = np.zeros([height, width, 3], np.uint8)
+		self.image5 = np.zeros([height, width, 3], np.uint8)
+		self.image2_copy = np.zeros([height, width, 3], np.uint8)
+		self.image3_copy = np.zeros([height, width, 3], np.uint8)
 		self.mode = True
 		self.drawing = False
 		self.number = 0

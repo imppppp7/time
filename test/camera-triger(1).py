@@ -72,6 +72,9 @@ def main_loop():
     # 计算RGB buffer所需的大小，这里直接按照相机的最大分辨率来分配
     FrameBufferSize = cap.sResolutionRange.iWidthMax * cap.sResolutionRange.iHeightMax * (1 if monoCamera else 3)
 
+    # 设置相机的分辨率，外触发需要调至800*600居中裁剪
+    mvsdk.CameraSetImageResolution(hCamera,mvsdk.CameraCustomizeResolution(hCamera))
+
     # 分配RGB buffer，用来存放ISP输出的图像
     # 备注：从相机传输到PC端的是RAW数据，在PC端通过软件ISP转为RGB数据（如果是黑白相机就不需要转换格式，但是ISP还有其它处理，所以也需要分配这个buffer）
     pFrameBuffer = mvsdk.CameraAlignMalloc(FrameBufferSize, 16)

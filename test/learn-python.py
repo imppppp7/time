@@ -85,3 +85,27 @@ class PizzaShop:
 scene = PizzaShop()
 scene.order('Homer')
 
+
+# 伪私有属性
+class C1:
+    def meth1(self): self.M = 88
+
+    def meth2(self): print(self.M)
+
+
+class C2:
+    def metha(self): self.M = 99
+
+    def methb(self): print(self.M)
+
+
+class C3(C1, C2): ...
+
+
+I = C3()
+I.meth1()
+I.meth2()
+I.metha()
+I.methb()
+print(I.__dict__)
+print(I.M)

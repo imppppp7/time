@@ -58,12 +58,18 @@
 # list1 = []
 # print(list1)
 
-import datetime
-import cv2
+# import datetime
+# import cv2
+#
+# start = datetime.datetime.now()
+#
+# nowtime = datetime.datetime.now()
+#
+# end = datetime.datetime.now()
+# print(end-start)
+n = 0
 
-start = datetime.datetime.now()
 
-nowtime = datetime.datetime.now()
-
-end = datetime.datetime.now()
-print(end-start)
+def zhang():
+    while 1:
+        n += 1
