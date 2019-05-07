@@ -20,27 +20,26 @@ class Image:
         frame1 = cv2.flip(frame, 0)
         # frame = cv2.resize(frame, (800, 600))
         self.image = cv2.add(frame1, self.image)
-        print('self.n', self.n)
         if self.n % m == 0:
             self.n = 0
             self.image1 = self.image
             self.image = np.zeros([600, 800, 3], np.uint8)
             return self.image1
-
+        print('self.n', self.n)
 
 # Cam = Camera()
-n = 0
-
-m = 6
-Img = Image()
-while 1:
-    n = n + 1
-    # frame = Cam.run()
-    # frame1 = cv2.flip(frame, 0)
-    frame1 = Img.enhancebri(m)
-    if n % m == 0:
-        # frame1 = Img.enhancebri(5)
-        cv2.imshow('1', frame1)
-        cv2.waitKey(1)
-        n = 0
-    print('n', n)
+# n = 0
+#
+# m = 6
+# Img = Image()
+# while 1:
+#     n = n + 1
+#     # frame = Cam.run()
+#     # frame1 = cv2.flip(frame, 0)
+#     frame1 = Img.enhancebri(m)
+#     if n % m == 0:
+#         # frame1 = Img.enhancebri(5)
+#         cv2.imshow('1', frame1)
+#         cv2.waitKey(1)
+#         n = 0
+#     print('n', n)
