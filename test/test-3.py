@@ -48,10 +48,12 @@
 
 
 # import cv2
-# cv2.namedWindow('1')
-# # img = cv2.imread(r'D:\teleguience\teleguidence\time\piuture\11111.png')
-# # cv2.imshow('1',img)
-# cv2.waitKey(100)
+# # cv2.namedWindow('1')
+# img = cv2.imread(r'D:\teleguience\teleguidence\time\piuture\11111.png')
+# # # cv2.imshow('1',img)
+# width,height = img.shape[1], img.shape[0]
+# print(width,height)
+# # cv2.waitKey(100)
 # list1 = []
 # list1.append((1,2))
 # list1.append((2,3))
@@ -67,9 +69,9 @@
 #
 # end = datetime.datetime.now()
 # print(end-start)
-n = 0
-
-
-def zhang():
-    while 1:
-        n += 1
+# n = 0
+print(1//2)
+#
+# def zhang():
+#     while 1:
+#         n += 1

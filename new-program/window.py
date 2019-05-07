@@ -51,10 +51,8 @@ class Window:
 
 	def changeimage(self, width, height, x1, y1, z):
 		# self.image4 = cv2.resize(self.image2, (width, height))
-
 		# 调同轴，需要投影相机拍到的画面，调用下面这句话，注释上面这句话
 		self.image4 = cv2.resize(self.image1, (width, height))
-
 		self.image5[x1:x1+height, y1:y1+width] = self.image4
 		# 加框
 		self.image5[x1-1-z:x1-1, y1-1:y1+1+width] = [255, 255, 255]
@@ -109,3 +107,4 @@ class Window:
 				self.number = 0
 
 		cv2.setMouseCallback(self.windowname1, drawline)
+
