@@ -61,12 +61,12 @@ class Camera:
 
         # mvsdk.CameraGetTriggerCount(hCamera)
 
-        # 手动曝光，曝光时间4ms
+        # 手动曝光 曝光时间3ms
         mvsdk.CameraSetAeState(self.hCamera, 0)
-        mvsdk.CameraSetExposureTime(self.hCamera, 3 * 1000)
+        mvsdk.CameraSetExposureTime(self.hCamera, 4 * 1000)
 
         # 设置增益，获得增益
-        mvsdk.CameraSetAnalogGain(self.hCamera, 2)
+        mvsdk.CameraSetAnalogGain(self.hCamera, 1)
         mvsdk.CameraGetAnalogGain(self.hCamera)
 
         # 让SDK内部取图线程开始工作
@@ -101,8 +101,7 @@ class Camera:
 
         # 释放帧缓存
         mvsdk.CameraAlignFree(self.pFrameBuffer)
-        # 关闭相机
-        # mvsdk.CameraUnInit(hCamera)
+
 
 
 

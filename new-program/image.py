@@ -19,6 +19,7 @@ class Image:
         frame = self.cam.run()
         frame1 = cv2.flip(frame, 0)
         # frame = cv2.resize(frame, (800, 600))
+        # frame1 = cv2.GaussianBlur(frame1, (5, 5), 1.5)
         self.image = cv2.add(frame1, self.image)
         if self.n % m == 0:
             self.n = 0
@@ -26,6 +27,9 @@ class Image:
             self.image = np.zeros([600, 800, 3], np.uint8)
             return self.image1
         print('self.n', self.n)
+
+    def closecamera(self):
+        mvsdk.CameraUnInit(self.cam.hCamera)
 
 # Cam = Camera()
 # n = 0

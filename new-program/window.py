@@ -57,10 +57,10 @@ class Window:
 
 		self.image5[x1:x1+height, y1:y1+width] = self.image4
 		# 加框
-		# self.image5[x1-1-z:x1-1, y1-1:y1+1+width] = [255, 255, 255]
-		# self.image5[x1+height+1:x1+height+1+z, y1-1:y1+1+width] = [255, 255, 255]
-		# self.image5[x1-1-z:x1+height+1+z, y1-1-z:y1-1] = [255, 255, 255]
-		# self.image5[x1-1-z:x1+height+1+z, y1+width+1:y1+width+1+z] = [255, 255, 255]
+		self.image5[x1-1-z:x1-1, y1-1:y1+1+width] = [255, 255, 255]
+		self.image5[x1+height+1:x1+height+1+z, y1-1:y1+1+width] = [255, 255, 255]
+		self.image5[x1-1-z:x1+height+1+z, y1-1-z:y1-1] = [255, 255, 255]
+		self.image5[x1-1-z:x1+height+1+z, y1+width+1:y1+width+1+z] = [255, 255, 255]
 
 	def showimage(self):
 		cv2.imshow(self.windowname1, self.image3)
