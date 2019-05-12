@@ -21,7 +21,7 @@ fig = plt.figure()
 # ax1 = plt.axes(projection='3d')
 ax2 = Axes3D(fig)
 
-# image = cv2.imread(r'D:\navagation\time\piuture\IMG_3661-2.jpg')
+image = cv2.imread(r'D:\navagation\time\piuture\IMG_20190509_113152.jpg')
 image = np.zeros([600, 800, 3], np.uint8)
 image[:][:] = 255
 # print(image)
