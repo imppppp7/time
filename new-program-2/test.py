@@ -8,3 +8,8 @@
 # cv2.namedWindow('2',cv2.WINDOW_NORMAL)
 # cv2.imshow('2', IMG)
 # cv2.waitKey()
+import copy
+list1 = [0, 1]
+list2 = list1[:]
+list1[0] = 10
+print(list1, list2)

@@ -7,12 +7,12 @@ from camera1 import Camera
 
 
 class Image:
-    def __init__(self):
+    def __init__(self, width, height):
         # 实例化相机
         self.cam = Camera()
         self.n = 0
-        self.image = np.zeros([600, 800, 3], np.uint8)
-        self.image1 = np.zeros([600, 800, 3], np.uint8)
+        self.image = np.zeros([height, width, 3], np.uint8)
+        self.image1 = np.zeros([height, width, 3], np.uint8)
 
     def enhancebri(self, m):
         self.n = self.n + 1
@@ -31,19 +31,3 @@ class Image:
     def closecamera(self):
         mvsdk.CameraUnInit(self.cam.hCamera)
 
-# Cam = Camera()
-# n = 0
-#
-# m = 6
-# Img = Image()
-# while 1:
-#     n = n + 1
-#     # frame = Cam.run()
-#     # frame1 = cv2.flip(frame, 0)
-#     frame1 = Img.enhancebri(m)
-#     if n % m == 0:
-#         # frame1 = Img.enhancebri(5)
-#         cv2.imshow('1', frame1)
-#         cv2.waitKey(1)
-#         n = 0
-#     print('n', n)

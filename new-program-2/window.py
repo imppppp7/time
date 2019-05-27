@@ -52,6 +52,23 @@ class Window:
 		cv2.namedWindow(self.windowname2, cv2.WINDOW_NORMAL)
 		cv2.resizeWindow(self.windowname2, width, height)
 
+	def movewindow(self, id):
+		screen_id = id
+		screen = screeninfo.get_monitors()[screen_id]
+		width, height = screen.width, screen.height
+		print('width,height are ', width, height)
+		cv2.moveWindow(self.windowname2, screen.x, screen.y)
+		self.image5 = np.zeros([height, width, 3], np.uint8)
+
+	def nobiaotilan(self):
+		cv2.setWindowProperty(self.windowname2, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+
+	def addimage(self, frame):
+		self.image6 = frame
+		# 由于投影仪左右反转 所以这里把放在二屏的相机的图左右翻转一下
+		self.image6 = cv2.flip(self.image6, 1)
+		self.image1 = cv2.add(frame, self.image3)
+
 	def changeimage(self, width, height, x1, y1, z):
 		self.image4 = cv2.resize(self.image2, (width, height))
 		# 调同轴，需要投影相机拍到的画面，调用下面这句话，注释上面这句话
@@ -68,23 +85,6 @@ class Window:
 		cv2.imshow(self.windowname1, self.image3)
 		cv2.imshow(self.windowname1, self.image1)
 		cv2.imshow(self.windowname2, self.image5)
-
-	def addimage(self, frame):
-		self.image6 = frame
-		# 由于投影仪左右反转 所以这里把放在二屏的相机的图左右翻转一下
-		self.image6 = cv2.flip(self.image6, 1)
-		self.image1 = cv2.add(frame, self.image3)
-
-	def movewindow(self, id):
-		screen_id = id
-		screen = screeninfo.get_monitors()[screen_id]
-		width, height = screen.width, screen.height
-		print('width,height are ', width, height)
-		cv2.moveWindow(self.windowname2, screen.x, screen.y)
-		self.image5 = np.zeros([height, width, 3], np.uint8)
-
-	def nobiaotilan(self):
-		cv2.setWindowProperty(self.windowname2, cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
 	def bindingwi(self, color1, color2, thickness, width, height):
 		def drawline(event, x, y, flags, param):

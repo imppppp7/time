@@ -8,9 +8,9 @@ from image import Image
 
 
 # 生成窗体对象
-pro = Window('projector_1','projector_2', 800, 600)
-# 生成相机图像对象
-# Img = Image()
+pro = Window('projector_1', 'projector_2', 800, 600)
+# 生成相机图像对象,width, height要和相机获取的图像保持一致
+# Img = Image(800, 600)
 # 前两个参数是第一个窗体，后两个是第二个窗体
 pro.createwindow(1280, 800)
 # 连投影仪运行这句话，不连就把1改成0，否则会报错 out of range
