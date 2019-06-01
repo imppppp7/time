@@ -37,7 +37,7 @@ def nothing(x):
 
 cv2.createTrackbar('z', 'projector_1', 0, 255, nothing)
 while 1:
-    frame = cv2.imread(r'C:\Users\Administrator\Desktop\image\%s.png' % n)
+    frame = cv2.imread(r'C:\Users\Administrator\Desktop\image1\%s.png' % n)
     pro.image3 = cv2.imread(r'C:\Users\Administrator\Desktop\image3\%s.png' % n)
     pro.image5 = cv2.imread(r'C:\Users\Administrator\Desktop\image5\%s.png' % n)
     pro.addimage(frame)

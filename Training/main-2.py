@@ -54,7 +54,7 @@ def nothing(x):
 
 cv2.createTrackbar('z', 'projector_1', 0, 255, nothing)
 while 1:
-    frame = cv2.imread(r'C:\Users\Administrator\Desktop\image\%s.png' % n)
+    frame = cv2.imread(r'C:\Users\Administrator\Desktop\image1\%s.png' % n)
     pro.addimage(frame)
     # 调同轴前两个参数调大小，后两个参数调位置,第五个参数调框的宽度
     pro.changeimage(550, 400, 245, 190, 5)

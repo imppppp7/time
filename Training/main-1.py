@@ -4,6 +4,8 @@ import numpy as np
 import screeninfo
 import mvsdk
 from window import Window
+import shutil
+import os
 
 
 '''
@@ -17,6 +19,11 @@ imwrite保存的地址随意
 '''
 
 
+# 每次运行程序之前都会先把这个文件夹里的东西清空，防止上一次运行会残留文件，但是第一次运行程序之前必须要创建一个空的文件夹
+# 删除文件夹
+shutil.rmtree(r'C:\Users\Administrator\Desktop\image1')
+# 创建空的文件夹
+os.mkdir(r'C:\Users\Administrator\Desktop\image1')
 # 初始化相机
 Cam = Camera()
 # 初始化m,n m为False不存，调整好位置角度以后，按m开始存
@@ -27,7 +34,7 @@ while 1:
     cv2.imshow('just see see', frame)
     k = cv2.waitKey(10) & 0xFF
     if m:
-        cv2.imwrite(r'C:\Users\Administrator\Desktop\image\%s.png' % n, frame)
+        cv2.imwrite(r'C:\Users\Administrator\Desktop\image1\%s.png' % n, frame)
         print('saving image_%s' % n)
         n += 1
     if k == ord('m'):
