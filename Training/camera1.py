@@ -63,7 +63,7 @@ class Camera:
 
         # 手动曝光 曝光时间3ms
         mvsdk.CameraSetAeState(self.hCamera, 0)
-        mvsdk.CameraSetExposureTime(self.hCamera, 4 * 1000)
+        mvsdk.CameraSetExposureTime(self.hCamera, 40 * 1000)
 
         # 设置增益，获得增益
         mvsdk.CameraSetAnalogGain(self.hCamera, 1)
@@ -77,7 +77,7 @@ class Camera:
                                (1 if self.monoCamera else 3)
 
         # 设置相机的分辨率，外触发需要调至800*600居中裁剪
-        mvsdk.CameraSetImageResolution(self.hCamera, mvsdk.CameraCustomizeResolution(self.hCamera))
+        # mvsdk.CameraSetImageResolution(self.hCamera, mvsdk.CameraCustomizeResolution(self.hCamera))
 
         # 分配RGB buffer，用来存放ISP输出的图像
         # 备注：从相机传输到PC端的是RAW数据，在PC端通过软件ISP转为RGB数据（如果是黑白相机就不需要转换格式，但是ISP还有其它处理，所以也需要分配这个buffer）
@@ -99,6 +99,9 @@ class Camera:
             if e.error_code != mvsdk.CAMERA_STATUS_TIME_OUT:
                 print("CameraGetImageBuffer failed({}): {}".format(e.error_code, e.message))
 
+    def closeCamera(self):
+        # 关闭相机
+        mvsdk.CameraUnInit(self.hCamera)
         # 释放帧缓存
         mvsdk.CameraAlignFree(self.pFrameBuffer)
 

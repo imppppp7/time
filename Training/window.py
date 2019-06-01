@@ -4,6 +4,7 @@ import numpy as np
 import copy
 import datetime
 
+
 '''
 
 1.为什么要用Image3 
@@ -26,6 +27,7 @@ image1不断地在刷新，但是仍然看不到做的标记 所以每次show im
 image5是二屏全屏显示的那个黑色图，将想要的东西赋值给image5的一部分就可以了.self.image6是调同轴用的 把二屏框内全黑的部分变成相机拍到
 的图 这样容易看相机投影仪视场是不是重合
 
+5.如果投影仪有反转，需要将画线，擦线的坐标相应的改变
 '''
 
 
@@ -93,13 +95,13 @@ class Window:
 				# 由于投影仪自身有反转， 坐标系对应的是opencv的坐标系, x对应width y对应height 如果俩个图画一样的点self.list1和list2
 				# 坐标一样就行，左右翻转需要改成width-x,上下翻转height-y
 				self.list1.append((x, y))
-				self.list2.append((width-x, y))
+				self.list2.append((x, y))
 				self.start = datetime.datetime.now()
 			elif event == cv2.EVENT_MOUSEMOVE:
 				if self.drawing:
 					if self.mode:
 						self.list1.append((x, y))
-						self.list2.append((width-x, y))
+						self.list2.append((x, y))
 						cv2.line(self.image3, self.list1[self.number], self.list1[self.number+1], color1, thickness=thickness)
 						cv2.line(self.image2, self.list2[self.number], self.list2[self.number+1], color2, thickness=thickness)
 						# 画点 不和画线的坐标一样 画点对应的是opencv的坐标系 x对应width y对应height
