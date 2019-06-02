@@ -26,7 +26,7 @@ shutil.rmtree(r'C:\Users\Administrator\Desktop\image1')
 os.mkdir(r'C:\Users\Administrator\Desktop\image1')
 # 初始化相机
 Cam = Camera()
-# 初始化m,n m为False不存，调整好位置角度以后，按m开始存
+# 初始化m,n m为False不存，调整好位置角度以后，按m开始存，中间某一部分不想存，可以按m暂停，再按m开始
 m, n = False, 0
 while 1:
     frame = Cam.run()
