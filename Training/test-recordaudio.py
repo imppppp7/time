@@ -9,8 +9,8 @@ FORMAT = pyaudio.paInt16
 CHANNELS = 2
 RATE = 44100
 # 改变记录的时间
-RECORD_SECONDS = 10
-WAVE_OUTPUT_FILENAME = r"C:\Users\Administrator\Desktop\recording\output.wav"
+RECORD_SECONDS = 5
+WAVE_OUTPUT_FILENAME = r"C:\Users\Administrator\Desktop\recording\9.wav"
 p = pyaudio.PyAudio()
 stream = p.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
 print("* recording")

@@ -7,14 +7,12 @@ import os
 from window import Window
 import shutil
 import os
-
+from Audio import Audio
 
 '''
-
 解释：
 空格： 暂停
 调waitkey的时间，可以调视频播放的快慢，waitkey 时间越短，放的越快
-
 '''
 
 
@@ -42,8 +40,10 @@ while 1:
     pro.image5 = cv2.imread(r'C:\Users\Administrator\Desktop\image5\%s.png' % n)
     pro.addimage(frame)
     pro.showimage()
+    path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+    Audio.play_audio(path2)
     # waitkey的时间决定了播放的帧率 waitkey 时间越短，放的越快
-    k = cv2.waitKey(100) & 0xFF
+    k = cv2.waitKey(1) & 0xFF
     z = cv2.getTrackbarPos('z', 'projector_1')
     n += 1
     print('n=', n)

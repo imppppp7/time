@@ -1,5 +1,15 @@
 import pyaudio
 import wave
+import sys
+import time
+
+'''
+
+init初始化的时候，time:要录制的时间，path：保存音频的路径及名称
+record_audio:运行一次录制一段时长为time的音频
+play_time:运行一次播放一段音频， 这里注意也要传入一个路径
+
+'''
 
 
 class Audio:
@@ -8,19 +18,16 @@ class Audio:
     CHANNELS = 2
     RATE = 44100
 
-    def __init__(self, time, path):
-        self.time = int(time)
-        self.path = path
-
-    def record_audio(self):
-        wave_output_filename = self.path
+    @staticmethod
+    def record_audio(time, path):
+        wave_output_filename = path
         p = pyaudio.PyAudio()
         stream = p.open(format=Audio.FORMAT, channels=Audio.CHANNELS,
                         rate=Audio.RATE, input=True,
                         frames_per_buffer=Audio.CHUNK)
         print("* recording")
         frames = []
-        for i in range(0, int(Audio.RATE / Audio.CHUNK * self.time)):
+        for i in range(0, int(Audio.RATE / Audio.CHUNK * time)):
             data = stream.read(Audio.CHUNK)
             frames.append(data)
         print("* done recording")
@@ -37,24 +44,37 @@ class Audio:
     @ staticmethod
     def play_audio(path):
         wf = wave.open(path, 'rb')
+        # instantiate PyAudio (1)
         p = pyaudio.PyAudio()
+        # define callback (2)
+
+        def callback(in_data, frame_count, time_info, status):
+            data = wf.readframes(frame_count)
+            return data, pyaudio.paContinue
+
+        # open stream using callback (3)
         stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
                         channels=wf.getnchannels(),
                         rate=wf.getframerate(),
-                        output=True)
-        data = wf.readframes(Audio.CHUNK)
-        while data != '':
-            stream.write(data)
-            data = wf.readframes(Audio.CHUNK)
+                        output=True,
+                        stream_callback=callback)
+        # start the stream (4)
+        stream.start_stream()
+        # wait for stream to finish (5)
+        while stream.is_active():
+            time.sleep(0.01)
+        # stop stream (6)
         stream.stop_stream()
         stream.close()
+        wf.close()
+        # close PyAudio (7)
         p.terminate()
 
-    def change_time(self, time):
-        self.time = int(time)
+# test的时候可以用
+# n = 5
+# path1 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+# Audio.record_audio(10, path1)
+# # path2 = r'C:\Users\Administrator\Desktop\recording\output.wav'
+# # Audio.play_audio(path2)
+# n = n + 1
 
-
-n = 1
-path1 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
-audio = Audio(10, path1)
-audio.recordaudio()
