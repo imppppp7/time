@@ -99,7 +99,7 @@ class Camera:
             if e.error_code != mvsdk.CAMERA_STATUS_TIME_OUT:
                 print("CameraGetImageBuffer failed({}): {}".format(e.error_code, e.message))
 
-    def closeCamera(self):
+    def closecamera(self):
         # 关闭相机
         mvsdk.CameraUnInit(self.hCamera)
         # 释放帧缓存
