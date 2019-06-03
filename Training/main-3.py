@@ -40,8 +40,8 @@ while 1:
     pro.image5 = cv2.imread(r'C:\Users\Administrator\Desktop\image5\%s.png' % n)
     pro.addimage(frame)
     pro.showimage()
-    path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
-    Audio.play_audio(path2)
+    # path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+    # Audio.play_audio(path2)
     # waitkey的时间决定了播放的帧率 waitkey 时间越短，放的越快
     k = cv2.waitKey(1) & 0xFF
     z = cv2.getTrackbarPos('z', 'projector_1')
@@ -52,3 +52,7 @@ while 1:
     if k == ord('z'):
         # n = int(input())
         n = z
+    # 修改读哪个音频
+    if n == 25 or n == 102:
+        path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+        Audio.play_audio(path2)

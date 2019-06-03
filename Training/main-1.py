@@ -6,7 +6,7 @@ import mvsdk
 from window import Window
 import shutil
 import os
-
+from Audio import Audio
 
 '''
 

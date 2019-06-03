@@ -65,15 +65,10 @@ while 1:
     cv2.imwrite(r'C:\Users\Administrator\Desktop\image3\%s.png' % n, pro.image3)
     # 保存二屏的标记图
     cv2.imwrite(r'C:\Users\Administrator\Desktop\image5\%s.png' % n, pro.image5)
-    # 保存音频
-    path1 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
-    time = 0.01
-    Audio.record_audio(time, path1)
     z = cv2.getTrackbarPos('z', 'projector_1')
     print('n=', n)
-    n += 1
     # waitkey的时间决定了播放的帧率 waitkey 时间越短，放的越快
-    k = cv2.waitKey(1) & 0xFF
+    k = cv2.waitKey(10) & 0xFF
     if k == ord('m'):
         pro.mode = not pro.mode
     if k == ord(' '):
@@ -81,4 +76,9 @@ while 1:
     if k == ord('z'):
         # n = int(input())
         n = z
-
+    if k == ord('r'):
+        # 保存音频
+        path1 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+        time = 5
+        Audio.record_audio(time, path1)
+    n += 1
