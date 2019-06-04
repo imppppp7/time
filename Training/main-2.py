@@ -37,13 +37,15 @@ os.mkdir(r'C:\Users\Administrator\Desktop\image3')
 os.mkdir(r'C:\Users\Administrator\Desktop\image5')
 os.mkdir(r'C:\Users\Administrator\Desktop\recording')
 
-# 生成窗体对象
-pro = Window('projector_1', 'projector_2', 800, 600)
-pro.createwindow(1280, 800)
+# 生成窗体对象 下面两句话的参数 要和相机拍到的图片保持一致
+width = 800
+height = 600
+pro = Window('projector_1', 'projector_2', width, height)
+pro.createwindow(width, height)
 # 连投影仪运行这句话，不连就把1改成0，否则会报错 out of range
 pro.movewindow(1)
 # 前两个参数是一屏二屏标记的颜色，第三个参数是标记的宽度，最后两个参数 要和生成窗体对象的最后两个参数保持一致，如果想要二屏标记也是绿色就把（255,255,255）改成（0,255,0）
-pro.bindingwi((0, 255, 0), (255, 255, 255), 3, 800, 600)
+pro.bindingwi((0, 255, 0), (255, 255, 255), 3, width, height)
 pro.nobiaotilan()
 # n用来计数
 n = 0
@@ -54,9 +56,11 @@ def nothing(x):
     pass
 
 
-cv2.createTrackbar('z', 'projector_1', 0, 255, nothing)
+cv2.namedWindow('projector_3',cv2.WINDOW_NORMAL)
+cv2.createTrackbar('z', 'projector_3', 0, 255, nothing)
 while 1:
     frame = cv2.imread(r'C:\Users\Administrator\Desktop\image1\%s.png' % n)
+    cv2.resize(frame, (800, 600), frame)
     pro.addimage(frame)
     # 调同轴前两个参数调大小，后两个参数调位置,第五个参数调框的宽度
     pro.changeimage(550, 400, 245, 190, 5)
@@ -65,10 +69,10 @@ while 1:
     cv2.imwrite(r'C:\Users\Administrator\Desktop\image3\%s.png' % n, pro.image3)
     # 保存二屏的标记图
     cv2.imwrite(r'C:\Users\Administrator\Desktop\image5\%s.png' % n, pro.image5)
-    z = cv2.getTrackbarPos('z', 'projector_1')
+    z = cv2.getTrackbarPos('z', 'projector_3')
     print('n=', n)
     # waitkey的时间决定了播放的帧率 waitkey 时间越短，放的越快
-    k = cv2.waitKey(10) & 0xFF
+    k = cv2.waitKey(100) & 0xFF
     if k == ord('m'):
         pro.mode = not pro.mode
     if k == ord(' '):
@@ -77,7 +81,7 @@ while 1:
         # n = int(input())
         n = z
     if k == ord('r'):
-        # 保存音频
+        # 保存音频,建议在Main-3里面专门录音，不要既录音也画标记，忙不过来
         path1 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
         time = 5
         Audio.record_audio(time, path1)

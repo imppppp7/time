@@ -13,9 +13,14 @@ from Audio import Audio
 解释：
 空格： 暂停
 调waitkey的时间，可以调视频播放的快慢，waitkey 时间越短，放的越快
+按r录音，录音的时间长短，调整time
 '''
 
 
+# 删除文件夹
+shutil.rmtree(r'C:\Users\Administrator\Desktop\recording')
+# 创建空的文件夹
+os.mkdir(r'C:\Users\Administrator\Desktop\recording')
 # 生成窗体对象
 pro = Window('projector_1', 'projector_2', 800, 600)
 pro.createwindow(1280, 800)
@@ -43,16 +48,18 @@ while 1:
     # path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
     # Audio.play_audio(path2)
     # waitkey的时间决定了播放的帧率 waitkey 时间越短，放的越快
-    k = cv2.waitKey(1) & 0xFF
-    z = cv2.getTrackbarPos('z', 'projector_1')
-    n += 1
     print('n=', n)
+    n += 1
+    z = cv2.getTrackbarPos('z', 'projector_1')
+    k = cv2.waitKey(30) & 0xFF
     if k == ord(' '):
         cv2.waitKey()
     if k == ord('z'):
         # n = int(input())
         n = z
-    # 修改读哪个音频
-    if n == 25 or n == 102:
-        path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
-        Audio.play_audio(path2)
+    if k == ord('r'):
+        # 保存音频
+        path1 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+        time = 5
+        Audio.record_audio(time, path1)
+
