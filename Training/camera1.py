@@ -63,7 +63,7 @@ class Camera:
 
         # 手动曝光 曝光时间3ms
         mvsdk.CameraSetAeState(self.hCamera, 0)
-        mvsdk.CameraSetExposureTime(self.hCamera, 40 * 1000)
+        mvsdk.CameraSetExposureTime(self.hCamera, 50 * 1000)
 
         # 设置增益，获得增益
         mvsdk.CameraSetAnalogGain(self.hCamera, 1)

@@ -46,7 +46,7 @@ while 1:
     print('n=', n)
     z = cv2.getTrackbarPos('z', 'projector_1')
     n += 1
-    k = cv2.waitKey(1) & 0xFF
+    k = cv2.waitKey(10) & 0xFF
     if k == ord(' '):
         cv2.waitKey()
     if k == ord('z'):

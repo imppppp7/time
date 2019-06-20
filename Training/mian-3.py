@@ -23,7 +23,7 @@ shutil.rmtree(r'C:\Users\Administrator\Desktop\recording')
 os.mkdir(r'C:\Users\Administrator\Desktop\recording')
 # 生成窗体对象
 pro = Window('projector_1', 'projector_2', 800, 600)
-pro.createwindow(1280, 800)
+pro.createwindow(800, 600)
 # 连投影仪运行这句话，不连就把1改成0，否则会报错 out of range
 pro.movewindow(1)
 # 前两个参数是一屏二屏标记的颜色，第三个参数是标记的宽度，最后两个参数 要和生成窗体对象的最后两个参数保持一致，如果想要二屏标记也是绿色就把（255,255,255）改成（0,255,0）
@@ -38,7 +38,7 @@ def nothing(x):
     pass
 
 
-cv2.createTrackbar('z', 'projector_1', 0, 255, nothing)
+# cv2.createTrackbar('z', 'projector_1', 0, 255, nothing)
 while 1:
     frame = cv2.imread(r'C:\Users\Administrator\Desktop\image1\%s.png' % n)
     pro.image3 = cv2.imread(r'C:\Users\Administrator\Desktop\image3\%s.png' % n)
@@ -50,13 +50,13 @@ while 1:
     # waitkey的时间决定了播放的帧率 waitkey 时间越短，放的越快
     print('n=', n)
     n += 1
-    z = cv2.getTrackbarPos('z', 'projector_1')
+    # z = cv2.getTrackbarPos('z', 'projector_1')
     k = cv2.waitKey(30) & 0xFF
     if k == ord(' '):
         cv2.waitKey()
-    if k == ord('z'):
-        # n = int(input())
-        n = z
+    # if k == ord('z'):
+    #     # n = int(input())
+    #     n = z
     if k == ord('r'):
         # 保存音频
         path1 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
