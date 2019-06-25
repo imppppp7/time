@@ -28,14 +28,38 @@
 #
 # p.terminate()
 from Audio import Audio
-n = 6
-print(n)
-path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
-Audio.play_audio(path2)
-n = n + 1
-print(n)
-path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
-Audio.play_audio(path2)
-print(n)
-path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
-Audio.play_audio(path2)
+import threading
+import cv2
+
+
+n = 1
+
+
+def saveaudio():
+    path1 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+    time = 5
+    Audio.record_audio(time, path1)
+
+# path1 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+# time = 5
+# Audio.record_audio(time, path1)
+
+while 1:
+    n = n+1
+    print(n)
+    k = cv2.waitKey(100) & 0xFF
+    if k == ord('m'):
+        t = threading.Thread(target=saveaudio)
+        t.start()
+
+
+# print(n)
+# path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+# Audio.play_audio(path2)
+# n = n + 1
+# print(n)
+# path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+# Audio.play_audio(path2)
+# print(n)
+# path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+# Audio.play_audio(path2)

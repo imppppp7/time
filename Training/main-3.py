@@ -8,6 +8,8 @@ from window import Window
 import shutil
 import os
 from Audio import Audio
+import threading
+
 
 '''
 解释：
@@ -33,6 +35,11 @@ def nothing(x):
     pass
 
 
+def playaudio():
+    path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+    Audio.play_audio(path2)
+
+
 cv2.createTrackbar('z', 'projector_1', 0, 255, nothing)
 while 1:
     frame = cv2.imread(r'C:\Users\Administrator\Desktop\image1\%s.png' % n)
@@ -46,13 +53,14 @@ while 1:
     print('n=', n)
     z = cv2.getTrackbarPos('z', 'projector_1')
     n += 1
-    k = cv2.waitKey(10) & 0xFF
+    k = cv2.waitKey(100) & 0xFF
     if k == ord(' '):
         cv2.waitKey()
     if k == ord('z'):
         # n = int(input())
         n = z
     # 修改读哪个音频
-    if n == 55 or n == 74:
-        path2 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
-        Audio.play_audio(path2)
+    if n == 16 or n == 74 or n == 122:
+        t = threading.Thread(target=playaudio)
+        t.start()
+

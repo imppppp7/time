@@ -8,6 +8,8 @@ from window import Window
 import shutil
 import os
 from Audio import Audio
+import threading
+
 
 '''
 
@@ -55,6 +57,14 @@ n = 0
 def nothing(x):
     pass
 
+# 一次要录制几秒钟
+
+
+def saveaudio():
+    path1 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
+    time = 5
+    Audio.record_audio(time, path1)
+
 
 cv2.namedWindow('projector_3',cv2.WINDOW_NORMAL)
 cv2.createTrackbar('z', 'projector_3', 0, 255, nothing)
@@ -81,8 +91,8 @@ while 1:
         # n = int(input())
         n = z
     if k == ord('r'):
-        # 保存音频,建议在Main-3里面专门录音，不要既录音也画标记，忙不过来
-        path1 = r'C:\Users\Administrator\Desktop\recording\%s.wav' % n
-        time = 5
-        Audio.record_audio(time, path1)
+        # 保存音频,单开一个线程用来录音
+        t = threading.Thread(target=saveaudio)
+        t.start()
+
     n += 1
